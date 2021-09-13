@@ -1,0 +1,47 @@
+Instruction to run the code:
+
+All the required file needed to run the program are present in problem1 folder (i.e. top14 ,top24 ,nsfnet_100,ARPANET_100)
+
+Run the following code in terminal to execute the command
+
+step 1: g++ mpls.cpp -o routing
+step 2: ./routing −top top14.txt −conn NSFNET_100.txt −rt routingtablefile.txt −ft forwardingtablefile.txt −path path.txt −flag dist −p 0
+
+Currently the parameter used in the step 2 are as follow you can change it according to run the required case:
+- for topology it is using top14.txt   (you can change it to top24.txt/top14.txt)
+- for connection it is using NSFNET_100.txt  (you can change it to ARPANET_100.TXT)
+- weight method used is dist(you can use dist/hop)
+- Approach used as 0(0 for optimistic/use 1 for pessimistic)
+
+I have separate stored forwarding table for
+1. top14 optimistic (NSFNET_100.TXT)
+2. top14 pessimistic (NSFNET_100.TXT)
+3. top24 optimistic  (ARPANET_100.TXT)
+4. top24 pessimistic (ARPANET_100.TXT)
+
+File formats::
+
+1. Routing table file
+
+**for each router to every other node there are two entries 
+one for shortest path and other for second shortest path
+
+-----------------------------------------------------------------------------
+destination node   |  path to destination  |   distance  |     no. of hops  |
+-----------------------------------------------------------------------------
+**path is denoted as src-->int.1-->int.2-->.....-->dest
+
+2. Forwarding table
+
+-------------------------------------------------------------------------------
+ ID of Incoming Port |   Label  In |  ID of Outgoing Port  |   Label Out |
+--------------------------------------------------------------------------------
+
+**Label and port ID is set to -1 when entry is not applicable.
+
+3. Path table 
+
+---------------------------------------------------------------------
+Connection ID |   Source |    Destination |  Label  |  Path Cost|
+---------------------------------------------------------------------
+
